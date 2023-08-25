@@ -3,7 +3,7 @@ name: Notify on GitHub Changes
 on:
   push:
     branches:
-      - main # เลือก branch ที่คุณต้องการติดตามการเปลี่ยนแปลง
+      - test1 # เลือก branch ที่คุณต้องการติดตามการเปลี่ยนแปลง
 
 jobs:
   notify:
