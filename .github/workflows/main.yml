@@ -1,0 +1,21 @@
+name: Notify on GitHub Changes
+
+on:
+  push:
+    branches:
+      - main # เลือก branch ที่คุณต้องการติดตามการเปลี่ยนแปลง
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Send Line Notify
+        env:
+          LINE_TOKEN: ${{ secrets.HoXpvarPxedA8yZVANs9vdIXDPEKQKrSuqnT4RBT5yE }} # เชื่อมโค้ดกับ Secret ของ Line Notify Token
+        run: |
+          MESSAGE="GitHub Repository: $GITHUB_REPOSITORY\nCommit by: $GITHUB_ACTOR\nCommit message: $GITHUB_EVENT_NAME"
+          curl -X POST -H "Authorization: Bearer $LINE_TOKEN" -F "message=$MESSAGE" https://notify-api.line.me/api/notify
